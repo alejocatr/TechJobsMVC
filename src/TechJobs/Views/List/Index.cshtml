@@ -1,9 +1,25 @@
 ﻿<h1>@ViewBag.Title</h1>
 <h2>View All</h2>
 <ul>
-    @foreach (KeyValuePair<string, string> column in ViewBag.columns) {
+    @foreach (KeyValuePair<string, string> column in ViewBag.columns)
+    {
         <li>
             <a asp-controller="List" asp-action="Values" asp-route-column="@column.Key">@column.Value</a>
         </li>
     }
 </ul>
+
+
+@if (ViewBag.jobs != null)
+{
+
+    // @Html.Partial("/Views/List/Jobs.cshtml")
+    <table>
+        @for (int i = 0; i < ViewBag.items.Count; i++)
+        {
+            <tr class="@( i % 2 == 0 ? "even" : "odd" ) ">
+                <td><a asp-controller="List" asp-action="Jobs" asp-route-column="@ViewBag.column" asp-route-value="@ViewBag.items[i]">@ViewBag.items[i]</a></td>
+            </tr>
+        }
+    </table>
+}
